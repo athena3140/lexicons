@@ -33,6 +33,6 @@ export default defineEventHandler(async (event) => {
 		const jsonData = JSON.parse(data);
 		return jsonData;
 	} catch (error) {
-		return { error: "Data not found" };
+		return { error: "Data not found", data: [params, grade, filePath] };
 	}
 });

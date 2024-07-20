@@ -53,8 +53,8 @@ watch(searchQuery, () => {
 	).length;
 	useState("foundCount", () => totalFoundCount);
 });
-useState("foundCount", () => totalFoundCount);
 
+useState("foundCount", () => totalFoundCount);
 useState("sidebar", () => titlesArray);
 definePageMeta({
 	layout: "lexicon",

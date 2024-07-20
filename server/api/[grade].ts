@@ -3,16 +3,33 @@
 // 	return data;
 // });
 
-import { promises as fs } from "fs";
-import { resolve } from "path";
-import { H3Event } from "h3";
+// import { promises as fs } from "fs";
+// import { resolve } from "path";
+// import { H3Event } from "h3";
 
-export default defineEventHandler(async (event: H3Event) => {
+// export default defineEventHandler(async (event: H3Event) => {
+// 	const params = event.context.params as { grade: string };
+// 	const { grade } = params;
+// 	const filePath = resolve(`./public/api/${grade}.json`);
+// 	try {
+// 		const data = await fs.readFile(filePath, "utf-8");
+// 		const jsonData = JSON.parse(data);
+// 		return jsonData;
+// 	} catch (error) {
+// 		return { error: "Data not found" };
+// 	}
+// });
+
+import { readFileSync } from "fs";
+import { resolve } from "path";
+
+export default defineEventHandler(async (event) => {
 	const params = event.context.params as { grade: string };
 	const { grade } = params;
 	const filePath = resolve(`./public/api/${grade}.json`);
+
 	try {
-		const data = await fs.readFile(filePath, "utf-8");
+		const data = readFileSync(filePath, "utf-8");
 		const jsonData = JSON.parse(data);
 		return jsonData;
 	} catch (error) {

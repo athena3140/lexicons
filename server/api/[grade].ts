@@ -10,7 +10,7 @@ import { H3Event } from "h3";
 export default defineEventHandler(async (event: H3Event) => {
 	const params = event.context.params as { grade: string };
 	const { grade } = params;
-	const filePath = resolve(`./assets/api/${grade}.json`);
+	const filePath = resolve(`./public/api/${grade}.json`);
 	try {
 		const data = await fs.readFile(filePath, "utf-8");
 		const jsonData = JSON.parse(data);

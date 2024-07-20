@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	background: radial-gradient(circle, #00ffff08 11%, transparent 11%);
+	background-size: 1rem 1rem;
+	background-attachment: fixed;
+	background-position: 1px 5px;
+	background-color: #121c24;
+	scroll-behavior: smooth;
+	scroll-padding: var(--scroll-padding);
+}
+
+::-webkit-scrollbar {
+	width: 4px;
+	background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+	@apply bg-gray-600;
+}
+
+aside::-webkit-scrollbar-thumb {
+	@apply bg-gray-700;
+}
+aside:hover::-webkit-scrollbar-thumb {
+	@apply bg-gray-600;
+}
+
+.sideTitle span {
+	font-family: "walone", sans-serif;
+}
+
+@layer components {
+	.sideItem {
+		@apply ms-7 p-2 rounded-lg text-white cursor-pointer  hover:bg-gray-700 font-sagar my-2;
+	}
+
+	.sideTitle {
+		@apply text-white text-xl mb-8 font-walone;
+	}
+
+	.skeleton {
+		@apply animate-pulse bg-gray-500 rounded;
+	}
+
+	.card {
+		@apply border text-white border-gray-600 rounded p-5 pb-7 font-sagar tracking-wide font-thin lg:w-[75%] sm:w-[90%] mx-auto relative;
+	}
+
+	.card__title {
+		@apply mb-4 text-xl flex justify-between items-center font-walone cursor-pointer;
+	}
+
+	.card__title span {
+		@apply text-transparent select-none pointer-events-none transition;
+	}
+
+	.card__title:hover span {
+		color: inherit;
+		user-select: auto;
+		pointer-events: all;
+	}
+
+	.pageNumber {
+		@apply absolute bottom-2 right-2;
+	}
+
+	.foundCount {
+		@apply absolute md:-bottom-16 -bottom-12 -right-5 opacity-0 transition-all backdrop-blur-md duration-300 rounded border border-gray-500 px-2 py-1 text-white z-50;
+	}
+
+	.foundCount.active {
+		@apply md:-right-0 -right-10 opacity-100 select-auto;
+	}
+}
+
+@layer base {
+	@font-face {
+		font-family: "MyanmarSagar";
+		src: url("../../public/fonts/MyanmarSagar.ttf") format("truetype");
+	}
+
+	@font-face {
+		font-family: "walone";
+		src: url("../../public/fonts/Walone.ttf") format("truetype");
+	}
+}

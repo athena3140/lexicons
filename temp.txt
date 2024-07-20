@@ -1,0 +1,29 @@
+// components/sidebar.vue
+	<!-- :style="{ height: sidebarHeight + 'px' }"
+		:class="{
+			'translate-x-0': isOpen,
+			'md:translate-x-0': loaded,
+		}" -->
+
+
+// components/card.vue
+
+<!-- 
+		<ol>
+			<li v-for="(item, index) in data" :key="index" :class="{ 'bg-gray-800': showItem(item) }">{{ item }}</li>
+		</ol>
+<tr v-for="(item, index) in data" :key="index" :class="{ 'bg-gray-800': showItem(item) }">
+			<td>{{ item.split("=")[0].trim() }}</td>
+			<td class="px-3">=</td>
+			<td class="tracking-wider">{{ item.split("=")[1].trim() }}</td>
+		</tr> 
+ const showItem = (item) => {
+ 	let found = false;
+ 	for (const key in item) {
+ 		if (item[key].includes(props.searchQuery)) {
+ 			found = true;
+ 			break;
+ 		}
+ 	}
+ 	return found;
+ }; -->

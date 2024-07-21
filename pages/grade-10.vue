@@ -32,7 +32,8 @@ import { ref, inject } from "vue";
 
 const searchQuery = inject("searchQuery");
 
-const { data } = await useFetch("/api/grade-10");
+// const { data } = await useFetch("/api/grade-10.json");
+const { data } = await useAsyncData("home", () => queryContent("/grade-10").findOne());
 const extractTitles = (section) => section.datas.map((item) => item.title);
 const titlesArray = ref({
 	firstSectionTitle: data.value.firstSection.title,

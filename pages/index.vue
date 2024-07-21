@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import GradeCard from "~/components/gradeCard.vue";
-</script>
-
 <template>
 	<Nextlayout>
 		<div class="md:w-full lg:w-9/12 mx-auto mb-60">

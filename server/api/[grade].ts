@@ -3,19 +3,35 @@
 // 	return data;
 // });
 
-import { promises as fs } from "fs";
-import { resolve } from "path";
+// import { promises as fs } from "fs";
+// import { resolve } from "path";
+// import { H3Event } from "h3";
+
+// export default defineEventHandler(async (event: H3Event) => {
+// 	const params = event.context.params as { grade: string };
+// 	const { grade } = params;
+// 	const filePath = `./public/api/${grade}.json`;
+
+// 	try {
+// 		const data = await fs.readFile(filePath, "utf-8");
+// 		const jsonData = JSON.parse(data);
+// 		return jsonData;
+// 	} catch (error) {
+// 		return { error: "Data not found" };
+// 	}
+// });
+
 import { H3Event } from "h3";
 
 export default defineEventHandler(async (event: H3Event) => {
 	const params = event.context.params as { grade: string };
 	const { grade } = params;
-	const filePath = `./public/api/${grade}.json`;
+	const filePath = `/public/api/${grade}.json`; // Assuming JSON file is in public/api
 
+	const response = await fetch(filePath); // Use fetch for static data
+	const data = await response.json();
+	return response;
 	try {
-		const data = await fs.readFile(filePath, "utf-8");
-		const jsonData = JSON.parse(data);
-		return jsonData;
 	} catch (error) {
 		return { error: "Data not found" };
 	}

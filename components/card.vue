@@ -1,6 +1,6 @@
 <template>
-	<div class="lg:pt-24 md:pt-24 sm:pt-20 pt-16" :id="`${section}-${index + 1}`">
-		<div class="card" v-show="shown">
+	<div class="lg:pt-24 md:pt-24 sm:pt-20 pt-16" :id="`${section}-${index + 1}`" v-show="shown">
+		<div class="card">
 			<NuxtLink :to="`#${section}-${index + 1}`" class="card__title">
 				{{ title }}
 				<span>#</span>

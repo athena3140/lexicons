@@ -8,9 +8,22 @@ export default {
 				body: ["Ubuntu", "sans-serif"],
 				sagar: ["MyanmarSagar", "sans-serif"],
 				walone: ["Walone", "sans-serif"],
+				poppins: ["Poppins ", "sans-serif"],
 			},
 			colors: {
-				primary: "#1D4ED8",
+				primary: {
+					50: "#edfffe",
+					100: "#c0feff",
+					200: "#81fbff",
+					300: "#3af8ff",
+					400: "#00ffff",
+					500: "#00e1e2",
+					600: "#00b2b7",
+					700: "#008c91",
+					800: "#006c72",
+					900: "#04585d",
+					950: "#00343a",
+				},
 			},
 			animation: { float: "float 3.5s ease-in-out infinite .5s" },
 			keyframes: {
@@ -22,5 +35,5 @@ export default {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/typography")],
 };

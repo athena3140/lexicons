@@ -6,48 +6,21 @@
 				<logo :logo-link="'/'" class="md:w-48 sm:w-36 w-32" />
 				<ul class="hidden gap-4 md:flex">
 					<li><NuxtLink to="/">Home</NuxtLink></li>
-					<li><NuxtLink to="/">About</NuxtLink></li>
+					<li><NuxtLink to="/changelog">Changelog</NuxtLink></li>
 					<li><NuxtLink to="/">Products</NuxtLink></li>
 				</ul>
-				<div :class="isOpen ? 'active' : null" class="w-full font-body menu absolute top-full left-0 z-10 md:hidden">
+				<div
+					:class="isOpen ? 'active' : null"
+					class="sm:w-[70%] w-full font-body menu absolute top-full left-1/2 z-10 md:hidden">
 					<ul
-						class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+						class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 						<li>
-							<a
-								href="#"
-								class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
-								aria-current="page"
-								>Home</a
-							>
+							<NuxtLink to="/">Home</NuxtLink>
 						</li>
 						<li>
-							<a
-								href="#"
-								class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-								>About</a
-							>
+							<NuxtLink to="/changelog">Changelog</NuxtLink>
 						</li>
-						<li>
-							<a
-								href="#"
-								class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-								>Services</a
-							>
-						</li>
-						<li>
-							<a
-								href="#"
-								class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-								>Pricing</a
-							>
-						</li>
-						<li>
-							<a
-								href="#"
-								class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-								>Contact</a
-							>
-						</li>
+						<li><NuxtLink to="/">Products</NuxtLink></li>
 					</ul>
 				</div>
 				<hamburger @click="toggle" :isOpen="isOpen" class="md:hidden cursor-pointer" />
@@ -83,13 +56,21 @@ const toggle = () => (isOpen.value = !isOpen.value);
 .menu {
 	opacity: 0;
 	pointer-events: none;
-	transform: translateY(40px) scale(0.9);
+	transform: translateY(40px) scale(0.9) translateX(-50%);
 	transition: 0.3s all;
 }
 
 .menu.active {
-	transform: translateY(20px) scale(1);
+	transform: translateY(20px) scale(1) translateX(-50%);
 	opacity: 1;
 	pointer-events: all;
+}
+
+.menu ul li a {
+	@apply block py-2 px-3 text-white rounded  md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0   hover:bg-gray-700 hover:text-white;
+}
+
+.menu ul li a.router-link-active {
+	@apply hover:bg-blue-700 text-white bg-blue-700;
 }
 </style>

@@ -62,11 +62,5 @@ definePageMeta({
 });
 useHead({
 	title: "G-10 | Lexicons",
-	link: [
-		{
-			rel: "icon",
-			href: "https://www.youtube.com/s/desktop/92fdfad2/img/favicon_32x32.png",
-		},
-	],
 });
 </script>

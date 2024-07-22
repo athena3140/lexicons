@@ -78,11 +78,11 @@ aside:hover::-webkit-scrollbar-thumb {
 @layer base {
 	@font-face {
 		font-family: "MyanmarSagar";
-		src: url("../../public/fonts/MyanmarSagar.ttf") format("truetype");
+		src: url("~/assets/fonts/MyanmarSagar.ttf") format("truetype");
 	}
 
 	@font-face {
 		font-family: "walone";
-		src: url("../../public/fonts/Walone.ttf") format("truetype");
+		src: url("~/assets/fonts/Walone.ttf") format("truetype");
 	}
 }

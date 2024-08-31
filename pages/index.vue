@@ -33,7 +33,7 @@
 				<h2 class="font-header text-xl mb-3">Grades</h2>
 				<div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 md:gap-x-10 gap-x-5 gap-y-10">
 					<template v-for="i in 8" :key="i">
-						<NuxtLink to="/grade-10">
+						<NuxtLink :to="`/grade-${i + 4}`">
 							<GradeCard
 								image="https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_1/v1685482587/cherokeek12net/sgcehhm0wh3exq9yfuw2/6.png"
 								:title="`Grade ${4 + i}`"

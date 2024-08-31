@@ -3,7 +3,11 @@
 		<header
 			class="lg:px-20 md:px-5 sm:px-5 sticky top-0 z-50 px-5 md:py-4 py-3 border-b border-gray-700 text-white bg-[#121c24]">
 			<nav class="flex justify-between items-center relative">
-				<logo :logo-link="'/'" class="md:w-48 sm:w-36 w-32" />
+				<div class="md:w-48 sm:w-36 w-32">
+					<NuxtLink to="/">
+						<img :src="logoUrl" />
+					</NuxtLink>
+				</div>
 				<ul class="hidden gap-4 md:flex">
 					<li><NuxtLink to="/">Home</NuxtLink></li>
 					<li><NuxtLink to="/changelog">Changelog</NuxtLink></li>
@@ -40,6 +44,11 @@ import { ref } from "vue";
 
 const isOpen = ref(false);
 const toggle = () => (isOpen.value = !isOpen.value);
+const logoUrl = ref("");
+
+onMounted(() => {
+	logoUrl.value = `${window.location.origin}/api/logo`;
+});
 </script>
 
 <style>

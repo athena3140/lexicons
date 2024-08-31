@@ -20,6 +20,9 @@ export default defineNuxtConfig({
 			],
 		},
 	},
+	experimental: {
+		renderJsonPayloads: false,
+	},
 	devtools: { enabled: true },
 	modules: ["@nuxtjs/tailwindcss", "@nuxt/content"],
 	css: ["~/assets/css/app.css"],

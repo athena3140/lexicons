@@ -10,23 +10,21 @@ body {
 	background-color: #121c24;
 	scroll-behavior: smooth;
 	scroll-padding: var(--scroll-padding);
+	scrollbar-gutter: stable;
 }
 
 ::-webkit-scrollbar {
 	width: 4px;
 	background-color: transparent;
 }
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb,
+aside:hover::-webkit-scrollbar-thumb {
 	@apply bg-gray-600;
 }
 
 aside::-webkit-scrollbar-thumb {
 	@apply bg-gray-700;
 }
-aside:hover::-webkit-scrollbar-thumb {
-	@apply bg-gray-600;
-}
-
 .sideTitle span {
 	font-family: "walone", sans-serif;
 }
@@ -46,6 +44,10 @@ aside:hover::-webkit-scrollbar-thumb {
 
 	.card {
 		@apply border text-white border-gray-600 rounded p-5 pb-7 font-sagar tracking-wide font-thin lg:w-[75%] sm:w-[90%] mx-auto relative;
+	}
+
+	.search-active {
+		@apply bg-gray-800;
 	}
 
 	.card__title {

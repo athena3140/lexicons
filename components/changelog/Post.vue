@@ -52,6 +52,10 @@ const formatDate = (date) => {
 .content-block {
 	@apply relative pt-2 pl-7 md:w-3/4 md:pt-0 md:pl-12 pb-16;
 }
+
+.lastContent .content-block {
+	@apply pb-5;
+}
 .document {
 	@apply max-w-none prose-h3:mb-4 prose-h3:text-base text-gray-200 prose-h3:leading-6 prose-sm prose prose-pre:text-base prose-slate prose-a:font-semibold prose-a:text-primary-600 hover:prose-a:text-sky-600;
 }

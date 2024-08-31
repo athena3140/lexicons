@@ -1,7 +1,7 @@
 <template>
-	<div class="lg:pt-24 md:pt-24 sm:pt-20 pt-16" :id="`${section}-${index + 1}`" v-show="shown">
+	<div class="lg:pt-24 md:pt-24 sm:pt-20 pt-16" :id="`${section ? `${section}-` : ``}${index + 1}`" v-show="shown">
 		<div class="card">
-			<NuxtLink :to="`#${section}-${index + 1}`" class="card__title">
+			<NuxtLink :to="`#${section ? `${section}-` : ``}${index + 1}`" class="card__title">
 				{{ title }}
 				<span>#</span>
 			</NuxtLink>
@@ -11,7 +11,7 @@
 						class="align-top"
 						v-for="(item, index) in data"
 						:key="index"
-						:class="[{ 'bg-gray-800': showItem(item) && searchQuery != '' }]"
+						:class="[{ 'search-active': showItem(item) && searchQuery != '' }]"
 						v-show="showItem(item)">
 						<td class="number">{{ index + 1 }}.</td>
 						<td>
@@ -35,7 +35,7 @@ const props = defineProps({
 	title: { type: String, required: true },
 	pageNumber: { type: String, required: true },
 	searchQuery: { type: String, required: true },
-	section: { type: [String, Number], required: true },
+	section: { type: [String, Number], default: "", required: false },
 });
 
 const shown = ref(false);

@@ -7,8 +7,12 @@
 				Changelogs
 			</NuxtLink>
 		</div>
-		<section class="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 overflow-hidden mt-20">
-			<ChangelogPost v-for="post in data" :content="post" />
+		<section class="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pb-10 overflow-hidden mt-20">
+			<ChangelogPost
+				v-for="(post, index) in data"
+				:key="index"
+				:content="post"
+				:class="{ lastContent: index == data.length - 1 }" />
 		</section>
 	</main>
 </template>

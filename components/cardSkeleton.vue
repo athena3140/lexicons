@@ -1,5 +1,5 @@
 <template>
-	<div v-for="i in 3" v-if="status" class="card">
+	<div v-for="i in 3" class="card mt-16">
 		<div class="skeleton h-9 mb-6" :style="{ width: randomWidth() }"></div>
 		<div class="grid gap-2">
 			<div class="skeleton h-5" :style="{ width: randomWidth(), animationDelay: '0.2s' }"></div>

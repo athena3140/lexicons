@@ -27,3 +27,30 @@
  	}
  	return found;
  }; -->
+
+
+
+
+
+
+<template>
+	<div v-if="!loaded">
+		<NuxtLink :to="logoData.url">
+			<img src="http://localhost:3000/api/logo" />
+		</NuxtLink>
+	</div>
+	<div class="skeleton h-9 w-30"></div>
+</template>
+
+<script setup>
+import { onMounted, ref } from "vue";
+
+const logoData = useState("logoData");
+const loaded = ref(false);
+const logoUrl = ref("");
+
+onMounted(() => {
+	logoData ? (loaded.value = true) : false;
+	logoUrl.value = logoData.value.text ? `/api/logo/${logoData.value.text}` : "/api/logo";
+});
+</script>

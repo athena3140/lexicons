@@ -18,6 +18,7 @@ export default defineNuxtConfig({
 				{ hid: "og:url", property: "og:url", content: "https://lexicons.vercel.app/" },
 				{ hid: "og:type", property: "og:type", content: "website" },
 			],
+			title: "Lexicons",
 		},
 	},
 	experimental: {

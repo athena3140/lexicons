@@ -31,7 +31,11 @@ aside::-webkit-scrollbar-thumb {
 
 @layer components {
 	.sideItem {
-		@apply ms-7 p-2 rounded-lg text-white cursor-pointer  hover:bg-gray-700 font-sagar my-2;
+		@apply ms-7 rounded-lg text-white cursor-pointer  hover:bg-gray-700 font-sagar my-2;
+
+		a {
+			@apply p-2 block;
+		}
 	}
 
 	.sideTitle {
@@ -86,5 +90,10 @@ aside::-webkit-scrollbar-thumb {
 	@font-face {
 		font-family: "walone";
 		src: url("~/assets/fonts/Walone.ttf") format("truetype");
+	}
+
+	@font-face {
+		font-family: "Geist";
+		src: url("~/assets/fonts/Geist-Regular.ttf") format("truetype");
 	}
 }

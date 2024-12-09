@@ -4,38 +4,28 @@
 		:class="{
 			'translate-x-0': isOpen,
 			'min-h-svh ': !loaded,
-			bordered: sidebar && 'isBorder' in sidebar,
+			bordered: loaded && 'isBorder' in sidebar,
 		}"
-		class="px-3 pb-4 overflow-y-auto sidebar fixed md:translate-x-0 -translate-x-full left-0 z-40 transition duration-300 bg-[#121C24]">
+		class="px-3 pb-4 overflow-y-auto sidebar fixed md:translate-x-0 -translate-x-full left-0 z-40 transition duration-300 bg-[#121c24d5] backdrop-blur-lg">
 		<div class="pt-10">
+			<!-- Skeleton -->
 			<div v-for="i in 2" v-if="!loaded" class="mb-10 flex items-end flex-col">
 				<div class="skeleton w-full h-9 mb-5"></div>
 				<div class="skeleton w-[90%] h-7 mb-3" v-for="i in 10"></div>
 			</div>
-			<p class="sideTitle" v-if="loaded && sidebar.firstSectionTitle">{{ sidebar.firstSectionTitle }}</p>
-			<ol class="font-medium list-decimal list-outside">
-				<NuxtLink
-					:to="`#${'sectionNumber' in sidebar ? `${sidebar.sectionNumber.firstSection}-` : ``}${index + 1}`"
-					v-for="(titles, index) in sidebar && sidebar.titles.slice(0, 10)"
-					:key="index">
-					<li class="sideItem">
-						<span>{{ titles }}</span>
-					</li>
-				</NuxtLink>
-			</ol>
-			<p class="sideTitle mt-10" v-if="loaded && sidebar.secondSectionTitle">
-				{{ sidebar.secondSectionTitle }}
-			</p>
-			<ol class="font-medium list-decimal list-outside">
-				<NuxtLink
-					:to="`#${'sectionNumber' in sidebar ? `${sidebar.sectionNumber.secondSection}-` : ``}${index + 1}`"
-					v-for="(titles, index) in sidebar && sidebar.titles.slice(10, 20)"
-					:key="index">
-					<li class="sideItem">
-						<span>{{ titles }}</span>
-					</li>
-				</NuxtLink>
-			</ol>
+
+			<template v-if="loaded">
+				<div v-for="data in sidebar.data" class="mb-10">
+					<p class="sideTitle" v-if="data.sectionTitle">{{ data.sectionTitle }}</p>
+					<ol class="font-medium list-decimal list-outside">
+						<li class="sideItem" v-for="(titles, index) in data.titles" :key="index">
+							<NuxtLink @click="goToSection" :to="getToHerf(data, index)">
+								{{ titles }}
+							</NuxtLink>
+						</li>
+					</ol>
+				</div>
+			</template>
 		</div>
 	</aside>
 </template>
@@ -47,18 +37,33 @@ const props = defineProps({
 	isOpen: { type: Boolean, required: true },
 });
 
+const emit = defineEmits(["update:isOpen"]);
+
 const sidebar = useState("sidebar");
 const sidebarHeight = ref(0);
 const navHeight = ref(0);
 const loaded = ref(false);
+
+const getToHerf = (data, index) => {
+	index = index + 1;
+	const isSectionTitle = "sectionNumber" in data;
+	const href = isSectionTitle ? `#${data.sectionNumber}-${index}` : `#${index}`;
+	return href;
+};
 
 const changeSidebarHeight = () => {
 	navHeight.value = document.querySelector("nav").offsetHeight;
 	sidebarHeight.value = window.innerHeight - navHeight.value;
 };
 
+const goToSection = (event) => {
+	if (!props.isOpen) return;
+	emit("update:isOpen", false);
+	event.preventDefault();
+};
+
 onMounted(() => {
-	sidebar ? (loaded.value = true) : false;
+	sidebar.value ? (loaded.value = true) : false;
 	changeSidebarHeight();
 	window.addEventListener("resize", changeSidebarHeight);
 });
@@ -70,6 +75,6 @@ li::marker {
 	font-size: 12px;
 }
 .bordered {
-	border-right: 3.5px solid #4b5563;
+	@apply border-0 md:border-r-2 border-gray-500;
 }
 </style>

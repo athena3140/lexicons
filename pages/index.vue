@@ -32,11 +32,13 @@
 			<div class="grades w-full text-gray-300 mt-20">
 				<h2 class="font-header text-xl mb-3">Grades</h2>
 				<div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 md:gap-x-10 gap-x-5 gap-y-10">
-					<template v-for="i in 8" :key="i">
-						<NuxtLink :to="`/grade-${i + 4}`">
+					<template v-for="(card, i) in cards" :key="i">
+						<NuxtLink :to="card.url">
 							<GradeCard
-								image="https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_1/v1685482587/cherokeek12net/sgcehhm0wh3exq9yfuw2/6.png"
-								:title="`Grade ${4 + i}`"
+								:status="card.status"
+								:title="card.title"
+								:icon="card.icon"
+								:chapterRange="card.chapterRange"
 								description="Chapter 4 to 5" />
 						</NuxtLink>
 					</template>
@@ -45,6 +47,39 @@
 		</div>
 	</Nextlayout>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const cards = ref([
+	{
+		icon: "5",
+		title: "Grade - 5",
+		url: "/grade-5",
+		chapterRange: "Total 6 Chapters",
+		status: true,
+	},
+	{
+		icon: "6",
+		title: "Grade - 6",
+		url: "/grade-6",
+		chapterRange: "Total 18 Chapters",
+		status: true,
+	},
+	{ status: false },
+	{ status: false },
+	{ status: false },
+	{
+		icon: "10",
+		title: "Grade - 10",
+		url: "/grade-10",
+		chapterRange: "စကားပြေရွေးချယ်ချက် နှင့် ကဗျာရွေးချယ်ချက်",
+		status: true,
+	},
+	{ status: false },
+	{ status: false },
+]);
+</script>
 
 <style>
 .hero {

@@ -9,6 +9,8 @@ export default {
 				sagar: ["MyanmarSagar", "sans-serif"],
 				walone: ["Walone", "sans-serif"],
 				poppins: ["Poppins ", "sans-serif"],
+				number: ["New Amsterdam", "sans-serif"],
+				geist: ["Geist", "sans-serif"],
 			},
 			colors: {
 				primary: {

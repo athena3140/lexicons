@@ -41,7 +41,7 @@
 					</svg>
 					<kbd>K</kbd>
 				</span>
-				<div class="foundCount" :class="{ active: searchQuery != '' }" hydrate="false">
+				<div class="foundCount" :class="{ active: searchQuery != '' && foundCount }" hydrate="false">
 					Found : <span class="text-[#00ffff]">{{ foundCount }}</span>
 				</div>
 			</div>
@@ -50,7 +50,7 @@
 	</nav>
 
 	<main class="flex justify-end">
-		<Sidebar :isOpen="isOpen" class="lg:w-[23%] md:w-[30%] sm:w-[50%] w-full" />
+		<Sidebar :isOpen="isOpen" @update:isOpen="updateOpenStatus($event)" class="lg:w-[23%] md:w-[30%] sm:w-[50%] w-full" />
 		<div
 			:style="{
 				height: getHeight,
@@ -79,6 +79,10 @@ const mainPadding = ref(0);
 const height = ref(0);
 const foundCount = useState("foundCount");
 const isMobile = ref(false);
+
+const updateOpenStatus = (value) => {
+	isOpen.value = value;
+};
 
 watch(searchQuery, (newValue) => {
 	router.replace({ query: { s: newValue } });

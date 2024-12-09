@@ -43,14 +43,19 @@ const { data } = await useAsyncData("grade-10", () => queryContent("/grade-10").
 const searchQuery = inject("searchQuery"); // injected from lexicon.vue
 
 const extractTitles = (section) => section.datas.map((item) => item.title); //extract titles from raw data
-const sidebar = ref({
-	firstSectionTitle: data.value.firstSection.title,
-	secondSectionTitle: data.value.secondSection.title,
-	titles: [...extractTitles(data.value.firstSection), ...extractTitles(data.value.secondSection)],
-	sectionNumber: {
-		firstSection: 1,
-		secondSection: 2,
-	},
+const sideBar = ref({
+	data: [
+		{
+			sectionTitle: data.value.firstSection.title,
+			titles: [...extractTitles(data.value.firstSection)],
+			sectionNumber: 1,
+		},
+		{
+			sectionTitle: data.value.secondSection.title,
+			titles: [...extractTitles(data.value.secondSection)],
+			sectionNumber: 2,
+		},
+	],
 });
 
 const totalFoundCount = useState("foundCount");
@@ -60,16 +65,26 @@ const combinedData = computed(() => {
 		.concat(data.value.secondSection.datas.flatMap((data) => data.data));
 });
 
+onMounted(() => {
+	if (searchQuery.value) updateFoundCount();
+});
+
 watch(searchQuery, () => {
+	updateFoundCount();
+});
+
+const updateFoundCount = () => {
 	totalFoundCount.value = combinedData.value.filter((item) =>
 		item.toLowerCase().includes(searchQuery.value.toLowerCase())
 	).length;
-});
+};
 
 const logoData = useState("logoData");
 logoData.value = ref({ text: "G-10", url: "/grade-10" });
 
-useState("sidebar", () => sidebar);
+const Sidebar = useState("sidebar");
+Sidebar.value = sideBar;
+
 definePageMeta({
 	layout: "lexicon",
 });

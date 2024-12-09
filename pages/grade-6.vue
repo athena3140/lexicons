@@ -17,16 +17,15 @@
 import { ref, inject } from "vue";
 
 const isLoading = ref(true);
-const { data } = await useAsyncData("grade-5", () => queryContent("/grade-5").findOne()).finally(() => {
+const { data } = await useAsyncData("grade-6", () => queryContent("/grade-6").findOne()).finally(() => {
 	setTimeout(() => {
 		isLoading.value = false;
 	}, 300);
 });
-const searchQuery = inject("searchQuery"); // inject from lexicon.vue
+const searchQuery = inject("searchQuery"); // inject fr om lexicon.vue
 
 const extractTitles = (section) => section.map((item) => item.title); //extract titles from raw data
 const sideBar = ref({
-	isBorder: true,
 	data: [
 		{
 			titles: [...extractTitles(data.value.datas)],
@@ -54,7 +53,7 @@ const updateFoundCount = () => {
 };
 
 const logoData = useState("logoData");
-logoData.value = ref({ text: "G-5", url: "/grade-5" });
+logoData.value = ref({ text: "G-6", url: "/grade-6" });
 
 const Sidebar = useState("sidebar");
 Sidebar.value = sideBar;
@@ -63,6 +62,6 @@ definePageMeta({
 	layout: "lexicon",
 });
 useHead({
-	title: "G-5 | Lexicons",
+	title: "G-6 | Lexicons",
 });
 </script>

@@ -1,6 +1,6 @@
 <template>
 	<Nextlayout>
-		<div class="md:w-full lg:w-9/12 mx-auto mb-60">
+		<div class="md:w-full lg:w-9/12 mx-auto mb-40">
 			<div class="hero font-body w-full mt-10 relative px-5 lg:py-32 md:py-32 sm:py-32 py-20 rounded-xl">
 				<div class="text-balance flex flex-col justify-center md:gap-20 gap-10 h-full w-full">
 					<div>
@@ -38,8 +38,7 @@
 								:status="card.status"
 								:title="card.title"
 								:icon="card.icon"
-								:chapterRange="card.chapterRange"
-								description="Chapter 4 to 5" />
+								:chapterRange="card.chapterRange" />
 						</NuxtLink>
 					</template>
 				</div>

@@ -36,6 +36,9 @@
 			:class="{ 'blur-[4px] select-none overflow-hidden h-svh': isOpen }">
 			<slot />
 		</main>
+		<footer class="text-gray-300 pb-5 px-3 text-xs md:w-full lg:w-9/12 mx-auto">
+			<span>© 2024 Chemistry Formula Quiz. Happy learning!</span>
+		</footer>
 	</div>
 </template>
 

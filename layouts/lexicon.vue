@@ -56,7 +56,7 @@
 				height: getHeight,
 			}"
 			@click="isOpen ? (isOpen = false) : null"
-			class="transition-all duration-300 content md:p-5 px-2 lg:w-[77%] md:w-[70%] w-full"
+			class="transition-all scrollbar-gutter duration-300 content md:p-5 px-2 lg:w-[77%] md:w-[70%] w-full"
 			:class="{ 'sm:blur-[3px] select-none overflow-hidden h-svh': isOpen }">
 			<slot />
 			<div class="contact flex flex-col items-center justify-center relative font-body mt-24 mb-16 text-white">
@@ -126,6 +126,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.scrollbar-gutter {
+	scrollbar-gutter: stable;
+}
+
 input[type="search"]::-webkit-search-cancel-button {
 	-webkit-appearance: none;
 	height: 24px;

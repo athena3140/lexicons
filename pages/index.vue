@@ -1,6 +1,6 @@
 <template>
 	<Nextlayout>
-		<div class="md:w-full lg:w-9/12 mx-auto mb-40">
+		<div class="md:w-full lg:w-9/12 mx-auto">
 			<div class="hero font-body w-full mt-10 relative px-5 lg:py-32 md:py-32 sm:py-32 py-20 rounded-xl">
 				<div class="text-balance flex flex-col justify-center md:gap-20 gap-10 h-full w-full">
 					<div>
@@ -19,7 +19,7 @@
 							class="sm:px-4 sm:py-2 px-3 py-2 sm:text-base text-sm bg-white md:w-80 sm:w-72 rounded focus:border-none focus:outline-none placeholder:text-gray-400"
 							placeholder="Search for a word" />
 						<button
-							class="bg-blue-700 font-sm font-thin sm:text-base text-xs tracking-wide text-white sm:px-2 sm:py-1 py-1 px-2 sm:rounded-md rounded-[4px] absolute top-1/2 right-1 -translate-y-1/2">
+							class="bg-primary-700 font-sm font-thin sm:text-base text-xs tracking-wide text-white sm:px-2 sm:py-1 py-1 px-2 sm:rounded-md rounded-[4px] absolute top-1/2 right-1 -translate-y-1/2">
 							Search
 						</button>
 					</div>

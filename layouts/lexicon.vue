@@ -61,7 +61,7 @@
 			<slot />
 			<div class="contact flex flex-col items-center justify-center relative font-body mt-24 mb-16 text-white">
 				<div>If you spot any data errors,</div>
-				<div>kindly <a class="relative" href="mailto:athena3140@gmail.com">contact me!</a></div>
+				<div>kindly <NuxtLink class="relative" to="/report">report to me!</NuxtLink></div>
 			</div>
 		</div>
 	</main>

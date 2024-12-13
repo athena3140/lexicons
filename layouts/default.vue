@@ -11,7 +11,7 @@
 				<ul class="hidden gap-4 md:flex">
 					<li><NuxtLink to="/">Home</NuxtLink></li>
 					<li><NuxtLink to="/changelog">Changelog</NuxtLink></li>
-					<li><NuxtLink to="/">Products</NuxtLink></li>
+					<li><NuxtLink to="/report">Report</NuxtLink></li>
 				</ul>
 				<div
 					:class="isOpen ? 'active' : null"
@@ -24,7 +24,7 @@
 						<li>
 							<NuxtLink to="/changelog">Changelog</NuxtLink>
 						</li>
-						<li><NuxtLink to="/">Products</NuxtLink></li>
+						<li><NuxtLink to="/report">Report</NuxtLink></li>
 					</ul>
 				</div>
 				<hamburger @click="toggle" :isOpen="isOpen" class="md:hidden cursor-pointer" />
@@ -32,12 +32,12 @@
 		</header>
 		<main
 			@click="isOpen ? (isOpen = false) : null"
-			class="p-4 transition-all duration-300"
+			class="p-4 transition-all duration-300 mb-40"
 			:class="{ 'blur-[4px] select-none overflow-hidden h-svh': isOpen }">
 			<slot />
 		</main>
 		<footer class="text-gray-300 pb-5 px-3 text-xs md:w-full lg:w-9/12 mx-auto">
-			<span>© 2024 Chemistry Formula Quiz. Happy learning!</span>
+			© {{ new Date().getFullYear() }} Lexicons. Your Gateway To Mastering Myanmar Lexicons.
 		</footer>
 	</div>
 </template>

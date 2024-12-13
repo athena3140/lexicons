@@ -25,7 +25,7 @@ export default defineNuxtConfig({
 		renderJsonPayloads: false,
 	},
 	devtools: { enabled: true },
-	modules: ["@nuxtjs/tailwindcss", "@nuxt/content"],
+	modules: ["@nuxtjs/tailwindcss", "@nuxt/content", "vue-sonner/nuxt"],
 	css: ["~/assets/css/app.css"],
 	router: {
 		options: {

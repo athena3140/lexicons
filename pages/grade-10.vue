@@ -46,13 +46,13 @@ const extractTitles = (section) => section.datas.map((item) => item.title); //ex
 const sideBar = ref({
 	data: [
 		{
-			sectionTitle: data.value.firstSection.title,
-			titles: [...extractTitles(data.value.firstSection)],
+			sectionTitle: data.value.datas.firstSection.title,
+			titles: [...extractTitles(data.value.datas.firstSection)],
 			sectionNumber: 1,
 		},
 		{
-			sectionTitle: data.value.secondSection.title,
-			titles: [...extractTitles(data.value.secondSection)],
+			sectionTitle: data.value.datas.secondSection.title,
+			titles: [...extractTitles(data.value.datas.secondSection)],
 			sectionNumber: 2,
 		},
 	],
@@ -60,9 +60,9 @@ const sideBar = ref({
 
 const totalFoundCount = useState("foundCount");
 const combinedData = computed(() => {
-	return data.value.firstSection.datas
+	return data.value.datas.firstSection.datas
 		.flatMap((data) => data.data)
-		.concat(data.value.secondSection.datas.flatMap((data) => data.data));
+		.concat(data.value.datas.secondSection.datas.flatMap((data) => data.data));
 });
 
 onMounted(() => {

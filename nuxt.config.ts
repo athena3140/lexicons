@@ -26,6 +26,11 @@ export default defineNuxtConfig({
 	},
 	devtools: { enabled: true },
 	modules: ["@nuxtjs/tailwindcss", "@nuxt/content", "vue-sonner/nuxt"],
+	vue: {
+		compilerOptions: {
+			isCustomElement: (tag) => ["Nextlayout"].includes(tag),
+		},
+	},
 	css: ["~/assets/css/app.css"],
 	router: {
 		options: {

@@ -52,14 +52,14 @@ import { ref } from "vue";
 
 const cards = ref([
 	{
-		icon: "5",
+		icon: 5,
 		title: "Grade - 5",
 		url: "/grade-5",
 		chapterRange: "Total 6 Chapters",
 		status: true,
 	},
 	{
-		icon: "6",
+		icon: 6,
 		title: "Grade - 6",
 		url: "/grade-6",
 		chapterRange: "Total 18 Chapters",
@@ -69,7 +69,7 @@ const cards = ref([
 	{ status: false },
 	{ status: false },
 	{
-		icon: "10",
+		icon: 10,
 		title: "Grade - 10",
 		url: "/grade-10",
 		chapterRange: "စကားပြေရွေးချယ်ချက် နှင့် ကဗျာရွေးချယ်ချက်",

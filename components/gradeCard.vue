@@ -38,10 +38,9 @@
 <script setup>
 const props = defineProps({
 	status: { type: Boolean, required: true },
-	title: { type: String, required: true },
-	name: { type: String, required: true },
-	icon: { type: Number, required: true },
-	chapterRange: { type: String, required: true },
+	title: { type: String },
+	icon: { type: Number },
+	chapterRange: { type: String },
 });
 </script>
 
@@ -112,19 +111,6 @@ const props = defineProps({
 	-webkit-backdrop-filter: blur(2px);
 	backdrop-filter: blur(2px);
 	transition: background-color 0.25s, border-color 0.25s;
-}
-.gradeCard .icon span {
-	/* position: relative; */
-	/* z-index: 1; */
-	/* display: flex; */
-	/* justify-content: center; */
-	/* align-items: center; */
-	/* width: 24px; */
-	/* height: 24px; */
-	/* background-color: red; */
-	/* transform: translateZ(0); */
-	/* color: var(--card-icon-color); */
-	/* transition: color 0.25s; */
 }
 
 .gradeCard h4 {

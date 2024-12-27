@@ -5,7 +5,7 @@
 		<form
 			ref="form"
 			@submit="handleSubmit"
-			class="max-w-3xl mx-auto sm:mt-10 mt-20 lg:p-10 rounded text-white flex flex-col gap-5">
+			class="max-w-3xl mx-auto sm:mt-10 !mt-10 lg:p-10 rounded text-white flex flex-col gap-5">
 			<div class="flex justify-between items-center sm:flex-row sm:gap-10 flex-col gap-5">
 				<div class="w-full">
 					<label for="name"> Your Name </label>
@@ -33,7 +33,7 @@
 					<label for="grade"> Select grade </label>
 					<select id="grade" v-model="grade" :disabled="isSubmitting" required>
 						<option disabled value="" selected>Select the grade where the issue occurred</option>
-						<option v-for="i in 8" :value="i + 4" :disabled="![5, 6, 12].includes(i + 4)">
+						<option v-for="i in 8" :value="i + 4" :disabled="![5, 6, 7, 8, 10].includes(i + 4)">
 							Grade {{ i + 4 }}
 						</option>
 					</select>
@@ -43,7 +43,7 @@
 					<select id="section" v-model="section" :disabled="isSubmitting">
 						<option disabled selected value="">Select the section (if applicable)</option>
 						<option disabled v-if="grade == 0">Select Grade First</option>
-						<option v-for="(title, index) in sections" :value="index" v-else>{{ title }}</option>
+						<option v-for="(title, index) in sections" :value="title" v-else>{{ title }}</option>
 					</select>
 				</div>
 			</div>
@@ -154,7 +154,10 @@ const fetchAndProcessData = async (grade) => {
 	const { data: newData } = await useAsyncData(`grade-${grade}`, () => queryContent(`/grade-${grade}`).findOne());
 
 	if (grade == 10) {
-		sections.value = [...extractTitles(newData.value.firstSection), ...extractTitles(newData.value.secondSection)];
+		sections.value = [
+			...extractTitles(newData.value.datas.firstSection),
+			...extractTitles(newData.value.datas.secondSection),
+		];
 		return;
 	}
 

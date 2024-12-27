@@ -14,9 +14,7 @@
 						:class="[{ 'search-active': showItem(item) && searchQuery != '' }]"
 						v-show="showItem(item)">
 						<td class="number">{{ index + 1 }}.</td>
-						<td>
-							{{ item.split("=")[0].trim() }}
-						</td>
+						<td v-html="item.split('=')[0].trim()"></td>
 						<td class="px-3">=</td>
 						<td class="tracking-wider" v-html="item.replace(/^[^=]+=/, '').trim()"></td>
 					</tr>

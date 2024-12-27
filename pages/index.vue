@@ -65,8 +65,20 @@ const cards = ref([
 		chapterRange: "Total 18 Chapters",
 		status: true,
 	},
-	{ status: false },
-	{ status: false },
+	{
+		icon: 7,
+		title: "Grade - 7",
+		url: "/grade-7",
+		chapterRange: "Total 18 Chapters",
+		status: true,
+	},
+	{
+		icon: 8,
+		title: "Grade - 8",
+		url: "/grade-8",
+		chapterRange: "Total 18 Chapters",
+		status: true,
+	},
 	{ status: false },
 	{
 		icon: 10,

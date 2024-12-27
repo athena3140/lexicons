@@ -16,7 +16,7 @@
 			<div class="line line-3"></div>
 		</div>
 	</div>
-	<div v-else class="gradeCard border-red-400 border">
+	<div v-else class="gradeCard">
 		<span class="icon"> {{ icon }} </span>
 		<h4>Comming Soon</h4>
 		<p>More Grade will be available soon</p>

@@ -34,11 +34,13 @@
 import { ref, inject } from "vue";
 
 const isLoading = ref(true);
-const { data } = await useAsyncData("grade-10", () => queryContent("/grade-10").findOne()).finally(() => {
+const { data: contentData } = await useAsyncData("grade-10", () => queryContent("/grade-10").findOne()).finally(() => {
 	setTimeout(() => {
 		isLoading.value = false;
 	}, 300);
 });
+
+const data = contentData.value.datas;
 
 const searchQuery = inject("searchQuery"); // injected from lexicon.vue
 
@@ -46,13 +48,13 @@ const extractTitles = (section) => section.datas.map((item) => item.title); //ex
 const sideBar = ref({
 	data: [
 		{
-			sectionTitle: data.value.datas.firstSection.title,
-			titles: [...extractTitles(data.value.datas.firstSection)],
+			sectionTitle: data.firstSection.title,
+			titles: [...extractTitles(data.firstSection)],
 			sectionNumber: 1,
 		},
 		{
-			sectionTitle: data.value.datas.secondSection.title,
-			titles: [...extractTitles(data.value.datas.secondSection)],
+			sectionTitle: data.secondSection.title,
+			titles: [...extractTitles(data.secondSection)],
 			sectionNumber: 2,
 		},
 	],
@@ -60,9 +62,7 @@ const sideBar = ref({
 
 const totalFoundCount = useState("foundCount");
 const combinedData = computed(() => {
-	return data.value.datas.firstSection.datas
-		.flatMap((data) => data.data)
-		.concat(data.value.datas.secondSection.datas.flatMap((data) => data.data));
+	return data.firstSection.datas.flatMap((data) => data.data).concat(data.secondSection.datas.flatMap((data) => data.data));
 });
 
 onMounted(() => {

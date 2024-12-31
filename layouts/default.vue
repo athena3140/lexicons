@@ -17,7 +17,7 @@
 					:class="isOpen ? 'active' : null"
 					class="sm:w-[70%] w-full font-body menu absolute top-full left-1/2 z-10 md:hidden">
 					<ul
-						class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-gray-800 md:bg-gray-900 border-gray-700">
+						class="font-medium gap-2 flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-gray-800 md:bg-gray-900 border-gray-700">
 						<li>
 							<NuxtLink to="/">Home</NuxtLink>
 						</li>
@@ -33,7 +33,7 @@
 		<main
 			@click="isOpen ? (isOpen = false) : null"
 			class="p-4 transition-all duration-300 mb-40"
-			:class="{ 'blur-[2px] select-none overflow-hidden h-svh': isOpen }">
+			:class="{ 'blur-[2px] select-none overflow-hidden': isOpen }">
 			<slot />
 		</main>
 		<footer class="text-gray-300 pb-5 px-3 text-xs md:w-full lg:w-9/12 mx-auto">

@@ -43,6 +43,10 @@
 					</template>
 				</div>
 			</div>
+			<div class="w-full mt-48" id="faq">
+				<Heading :path="'#faq'" :title="'Faq'" class="!mt-20 mb-10" />
+				<accordion class="w-full md:w-3/4 mx-auto" />
+			</div>
 		</div>
 	</Nextlayout>
 </template>

@@ -17,13 +17,13 @@
 			<template v-if="loaded">
 				<div v-for="data in sidebar.data" class="mb-10">
 					<p class="sideTitle" v-if="data.sectionTitle">{{ data.sectionTitle }}</p>
-					<ol class="font-medium list-decimal list-outside">
-						<li class="sideItem" v-for="(titles, index) in data.titles" :key="index">
-							<NuxtLink @click="goToSection" :to="getToHerf(data, index)">
-								{{ titles }}
-							</NuxtLink>
-						</li>
-					</ol>
+
+					<div class="sideItem" v-for="(titles, index) in data.titles" :key="index">
+						<NuxtLink @click="goToSection" :to="getToHerf(data, index)">
+							<div class="number">{{ convertDigits(index + 1) }}။</div>
+							{{ titles }}
+						</NuxtLink>
+					</div>
 				</div>
 			</template>
 		</div>
@@ -62,6 +62,8 @@ const goToSection = (event) => {
 	event.preventDefault();
 };
 
+const convertDigits = (num) => num.toString().replace(/[0-9]/g, (d) => "၀၁၂၃၄၅၆၇၈၉"[d]);
+
 onMounted(() => {
 	sidebar.value ? (loaded.value = true) : false;
 	changeSidebarHeight();
@@ -70,9 +72,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
+ol {
+	list-style-type: myanmar;
+}
+
 li::marker {
 	color: rgb(107 114 128);
-	font-size: 12px;
+	/* font-size: 12px; */
 }
 .bordered {
 	@apply border-0 md:border-r-2 border-gray-500;

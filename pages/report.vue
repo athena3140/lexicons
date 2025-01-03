@@ -33,7 +33,7 @@
 					<label for="grade"> Select grade </label>
 					<select id="grade" v-model="grade" :disabled="isSubmitting" required>
 						<option disabled value="" selected>Select the grade where the issue occurred</option>
-						<option v-for="i in 8" :value="i + 4" :disabled="![5, 6, 7, 8, 10].includes(i + 4)">
+						<option v-for="i in 8" :value="i + 4" :disabled="![5, 6, 7, 8, 9, 10, 11].includes(i + 4)">
 							Grade {{ i + 4 }}
 						</option>
 					</select>
@@ -157,6 +157,15 @@ const fetchAndProcessData = async (grade) => {
 		sections.value = [
 			...extractTitles(newData.value.datas.firstSection),
 			...extractTitles(newData.value.datas.secondSection),
+		];
+		return;
+	}
+
+	if (grade == 11) {
+		sections.value = [
+			...extractTitles(newData.value.datas.firstSection),
+			...extractTitles(newData.value.datas.secondSection),
+			...extractTitles(newData.value.datas.thirdSection),
 		];
 		return;
 	}

@@ -1,22 +1,21 @@
 <template>
-	<div class="lg:pt-24 md:pt-24 sm:pt-20 pt-16" :id="`${section ? `${section}-` : ``}${index + 1}`" v-show="shown">
+	<div class="lg:pt-24 md:pt-24 sm:pt-20 pt-16" :id="getId(section, index)" v-show="shown">
 		<div class="card">
-			<NuxtLink :to="`#${section ? `${section}-` : ``}${index + 1}`" class="card__title">
+			<NuxtLink :to="getHash(section, index)" class="card__title">
 				{{ title }}
 				<span>#</span>
 			</NuxtLink>
 			<table class="border-separate border-spacing-y-2 w-full">
 				<tbody>
 					<tr
-						class="align-top"
 						v-for="(item, index) in data"
 						:key="index"
 						:class="[{ 'search-active': showItem(item) && searchQuery != '' }]"
 						v-show="showItem(item)">
-						<td class="number">{{ index + 1 }}.</td>
+						<td>{{ convertDigits(index + 1) }}။</td>
 						<td v-html="item.split('=')[0].trim()"></td>
-						<td class="px-3">=</td>
-						<td class="tracking-wider" v-html="item.replace(/^[^=]+=/, '').trim()"></td>
+						<td>=</td>
+						<td v-html="item.replace(/^[^=]+=/, '').trim()"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -48,22 +47,32 @@ const showItem = (item) => {
 	}
 	return show;
 };
+
+const getId = (section, index) => `${section ? `${section}-${index + 1}` : `${index + 1}`}`;
+const getHash = (section, index) => `#${section ? `${section}-${index + 1}` : `${index + 1}`}`;
+const convertDigits = (num) => num.toString().replace(/[0-9]/g, (d) => "၀၁၂၃၄၅၆၇၈၉"[d]);
 </script>
 
 <style scoped>
-li::marker,
-.number {
-	color: rgb(107 114 128);
-	font-size: 14px;
-	user-select: none;
-}
+table tr {
+	@apply align-top;
 
-.number {
-	padding-right: 2px;
-}
+	td:first-child {
+		color: rgb(107 114 128);
+		font-size: 14px;
+		padding-top: 3px;
+		padding-right: 0.75rem;
+		text-align: right;
+		user-select: none;
+	}
 
-li {
-	margin-bottom: 10px;
+	td:nth-child(3) {
+		@apply px-3;
+	}
+
+	td:nth-child(4) {
+		@apply tracking-wider;
+	}
 }
 
 @media (min-width: 768px) {

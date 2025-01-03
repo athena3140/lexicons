@@ -25,6 +25,17 @@
 					:pageNumber="item.pageNumber"
 					:searchQuery="searchQuery" />
 			</template>
+
+			<cardTitle :title="data.thirdSection.title" class="mt-20" v-if="!searchQuery" />
+			<template v-for="(item, index) in data.thirdSection.datas" :key="index">
+				<Card
+					:section="3"
+					:index="index"
+					:data="item.data"
+					:title="item.title"
+					:pageNumber="item.pageNumber"
+					:searchQuery="searchQuery" />
+			</template>
 		</div>
 	</div>
 </template>
@@ -33,7 +44,7 @@
 import { ref, inject } from "vue";
 
 const isLoading = ref(true);
-const { data: contentData } = await useAsyncData("grade-10", () => queryContent("/grade-10").findOne()).finally(() => {
+const { data: contentData } = await useAsyncData("grade-11", () => queryContent("/grade-11").findOne()).finally(() => {
 	setTimeout(() => {
 		isLoading.value = false;
 	}, 300);
@@ -56,12 +67,20 @@ const sideBar = ref({
 			titles: [...extractTitles(data.secondSection)],
 			sectionNumber: 2,
 		},
+		{
+			sectionTitle: data.thirdSection.title,
+			titles: [...extractTitles(data.thirdSection)],
+			sectionNumber: 3,
+		},
 	],
 });
 
 const totalFoundCount = useState("foundCount");
 const combinedData = computed(() => {
-	return data.firstSection.datas.flatMap((data) => data.data).concat(data.secondSection.datas.flatMap((data) => data.data));
+	return data.firstSection.datas
+		.flatMap((data) => data.data)
+		.concat(data.secondSection.datas.flatMap((data) => data.data))
+		.concat(data.thirdSection.datas.flatMap((data) => data.data));
 });
 
 onMounted(() => {
@@ -79,7 +98,7 @@ const updateFoundCount = () => {
 };
 
 const logoData = useState("logoData");
-logoData.value = ref({ text: "G-10", url: "/grade-10" });
+logoData.value = ref({ text: "G-11", url: "/grade-11" });
 
 const Sidebar = useState("sidebar");
 Sidebar.value = sideBar;
@@ -88,6 +107,6 @@ definePageMeta({
 	layout: "lexicon",
 });
 useHead({
-	title: "G-10 | Lexicons",
+	title: "G-11 | Lexicons",
 });
 </script>

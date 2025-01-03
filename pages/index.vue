@@ -83,7 +83,13 @@ const cards = ref([
 		chapterRange: "Total 18 Chapters",
 		status: true,
 	},
-	{ status: false },
+	{
+		icon: 9,
+		title: "Grade - 9",
+		url: "/grade-9",
+		chapterRange: "Total 18 Chapters",
+		status: true,
+	},
 	{
 		icon: 10,
 		title: "Grade - 10",
@@ -91,7 +97,13 @@ const cards = ref([
 		chapterRange: "စကားပြေရွေးချယ်ချက် နှင့် ကဗျာရွေးချယ်ချက်",
 		status: true,
 	},
-	{ status: false },
+	{
+		icon: 11,
+		title: "Grade - 11",
+		url: "/grade-11",
+		chapterRange: "စကားပြေ၊ ကဗျာ နှင့် ပြဇာတ်ရွေးချယ်ချက်",
+		status: true,
+	},
 	{ status: false },
 ]);
 </script>

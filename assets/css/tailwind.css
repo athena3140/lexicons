@@ -32,13 +32,14 @@ aside::-webkit-scrollbar-thumb {
 
 @layer components {
 	.sideItem {
-		@apply relative rounded-lg ms-8 ps-2 py-2 text-white cursor-pointer hover:bg-gray-700 font-sagar my-2;
+		@apply relative ms-8 text-white cursor-pointer font-sagar my-2;
+
 		.number {
 			@apply absolute w-6 -left-7 text-right;
 			color: rgb(107 114 128);
 		}
 		a {
-			@apply block text-balance;
+			@apply block text-balance ps-2 py-2 rounded-lg hover:bg-gray-700;
 		}
 	}
 

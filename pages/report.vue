@@ -33,9 +33,7 @@
 					<label for="grade"> Select grade </label>
 					<select id="grade" v-model="grade" :disabled="isSubmitting" required>
 						<option disabled value="" selected>Select the grade where the issue occurred</option>
-						<option v-for="i in 8" :value="i + 4" :disabled="![5, 6, 7, 8, 9, 10, 11].includes(i + 4)">
-							Grade {{ i + 4 }}
-						</option>
+						<option v-for="i in 8" :value="i + 4">Grade {{ i + 4 }}</option>
 					</select>
 				</div>
 				<div class="w-full">
@@ -122,16 +120,11 @@ const handleSubmit = async (e) => {
 			});
 
 			resolve(result);
+			resetFields();
 		} catch (error) {
 			reject(error);
 		} finally {
 			changeSubmitStatus(false);
-			grade.value = "";
-			sections.value = [];
-			name.value = "";
-			email.value = "";
-			section.value = "";
-			message.value = "";
 		}
 	});
 
@@ -140,6 +133,15 @@ const handleSubmit = async (e) => {
 		success: () => `Report submitted successfully!}`,
 		error: (error) => `Failed to submit report: ${error.message || "Unknown error"}`,
 	});
+};
+
+const resetFields = () => {
+	grade.value = "";
+	sections.value = [];
+	name.value = "";
+	email.value = "";
+	section.value = "";
+	message.value = "";
 };
 
 const changeSubmitStatus = (value) => {
@@ -153,19 +155,11 @@ watch(grade, (newGrade) => {
 const fetchAndProcessData = async (grade) => {
 	const { data: newData } = await useAsyncData(`grade-${grade}`, () => queryContent(`/grade-${grade}`).findOne());
 
-	if (grade == 10) {
+	if (grade >= 10) {
 		sections.value = [
 			...extractTitles(newData.value.datas.firstSection),
 			...extractTitles(newData.value.datas.secondSection),
-		];
-		return;
-	}
-
-	if (grade == 11) {
-		sections.value = [
-			...extractTitles(newData.value.datas.firstSection),
-			...extractTitles(newData.value.datas.secondSection),
-			...extractTitles(newData.value.datas.thirdSection),
+			...(grade == 10 ? [] : extractTitles(newData.value.datas.thirdSection)),
 		];
 		return;
 	}

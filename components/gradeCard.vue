@@ -1,25 +1,8 @@
 <template>
-	<div v-if="status" class="gradeCard">
+	<div class="gradeCard">
 		<span class="icon"> {{ icon }} </span>
 		<h4>{{ title }}</h4>
 		<p>{{ chapterRange }}</p>
-		<div class="shine"></div>
-		<div class="background">
-			<div class="tiles">
-				<template v-for="i in 10">
-					<div :class="`tile tile-${i}`"></div>
-				</template>
-			</div>
-
-			<div class="line line-1"></div>
-			<div class="line line-2"></div>
-			<div class="line line-3"></div>
-		</div>
-	</div>
-	<div v-else class="gradeCard">
-		<span class="icon"> {{ icon }} </span>
-		<h4>Comming Soon</h4>
-		<p>More Grade will be available soon</p>
 		<div class="shine"></div>
 		<div class="background">
 			<div class="tiles">
@@ -37,7 +20,6 @@
 
 <script setup>
 const props = defineProps({
-	status: { type: Boolean, required: true },
 	title: { type: String },
 	icon: { type: Number },
 	chapterRange: { type: String },

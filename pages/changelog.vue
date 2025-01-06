@@ -12,9 +12,6 @@
 </template>
 
 <script setup>
-definePageMeta({
-	layout: "empty",
-});
 const { data } = await useAsyncData("feed", () => queryContent("/changelog").find());
 data.value.sort((a, b) => new Date(b.date) - new Date(a.date));
 </script>

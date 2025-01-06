@@ -8,10 +8,11 @@
 						<img :src="logoUrl" />
 					</NuxtLink>
 				</div>
-				<ul class="hidden gap-4 md:flex">
+				<ul class="hidden navLinks gap-4 md:flex">
 					<li><NuxtLink to="/">Home</NuxtLink></li>
 					<li><NuxtLink to="/changelog">Changelog</NuxtLink></li>
 					<li><NuxtLink to="/report">Report</NuxtLink></li>
+					<li><NuxtLink to="/developer">Developer</NuxtLink></li>
 				</ul>
 				<div
 					:class="isOpen ? 'active' : null"
@@ -19,12 +20,17 @@
 					<ul
 						class="font-medium gap-2 flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-gray-800 md:bg-gray-900 border-gray-700">
 						<li>
-							<NuxtLink to="/">Home</NuxtLink>
+							<NuxtLink @click="isOpen = false" to="/">Home</NuxtLink>
 						</li>
 						<li>
-							<NuxtLink to="/changelog">Changelog</NuxtLink>
+							<NuxtLink @click="isOpen = false" to="/changelog">Changelog</NuxtLink>
 						</li>
-						<li><NuxtLink to="/report">Report</NuxtLink></li>
+						<li>
+							<NuxtLink @click="isOpen = false" to="/report">Report</NuxtLink>
+						</li>
+						<li>
+							<NuxtLink @click="isOpen = false" to="/developer">Developer</NuxtLink>
+						</li>
 					</ul>
 				</div>
 				<hamburger @click="toggle" :isOpen="isOpen" class="md:hidden cursor-pointer" />
@@ -55,6 +61,24 @@ onMounted(() => {
 </script>
 
 <style>
+.navLinks {
+	a {
+		@apply relative;
+	}
+
+	.router-link-active.router-link-exact-active::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 5px;
+		bottom: -4px;
+		left: 0;
+		background-repeat: no-repeat;
+		background-image: url(../assets/images/underline.svg);
+		background-size: cover;
+	}
+}
+
 .font-logo svg {
 	transition: all 0s;
 	transform: rotate(0deg);

@@ -43,9 +43,9 @@
 					</template>
 				</div>
 			</div>
-			<div class="w-full mt-48" id="faq">
+			<div class="w-full md:mt-32 mt-20 pt-16" id="faq">
 				<Heading :path="'#faq'" :title="'Faq'" class="!mt-20 mb-10" />
-				<accordion class="w-full md:w-3/4 mx-auto" />
+				<accordion class="w-full lg:w-3/4 md:w-5/6 mx-auto" />
 			</div>
 		</div>
 	</Nextlayout>
@@ -60,51 +60,49 @@ const cards = ref([
 		title: "Grade - 5",
 		url: "/grade-5",
 		chapterRange: "Total 6 Chapters",
-		status: true,
 	},
 	{
 		icon: 6,
 		title: "Grade - 6",
 		url: "/grade-6",
 		chapterRange: "Total 18 Chapters",
-		status: true,
 	},
 	{
 		icon: 7,
 		title: "Grade - 7",
 		url: "/grade-7",
 		chapterRange: "Total 18 Chapters",
-		status: true,
 	},
 	{
 		icon: 8,
 		title: "Grade - 8",
 		url: "/grade-8",
 		chapterRange: "Total 18 Chapters",
-		status: true,
 	},
 	{
 		icon: 9,
 		title: "Grade - 9",
 		url: "/grade-9",
 		chapterRange: "Total 18 Chapters",
-		status: true,
 	},
 	{
 		icon: 10,
 		title: "Grade - 10",
 		url: "/grade-10",
 		chapterRange: "စကားပြေရွေးချယ်ချက် နှင့် ကဗျာရွေးချယ်ချက်",
-		status: true,
 	},
 	{
 		icon: 11,
 		title: "Grade - 11",
 		url: "/grade-11",
 		chapterRange: "စကားပြေ၊ ကဗျာ နှင့် ပြဇာတ်ရွေးချယ်ချက်",
-		status: true,
 	},
-	{ status: false },
+	{
+		icon: 12,
+		title: "Grade - 12",
+		url: "/grade-12",
+		chapterRange: "စကားပြေ၊ ကဗျာ နှင့် ပြဇာတ်ရွေးချယ်ချက်",
+	},
 ]);
 </script>
 

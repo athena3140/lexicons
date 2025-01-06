@@ -2,7 +2,7 @@
 	<div class="flex justify-center items-center flex-col mt-32 gap-2">
 		<NuxtLink
 			:to="path"
-			class="font-geist title whitespace-pre-wrap bg-gradient-to-b bg-clip-text text-center text-8xl font-semibold text-transparent dark:from-white dark:to-slate-800/10">
+			class="font-geist title whitespace-pre-wrap bg-gradient-to-b bg-clip-text text-center text-6xl sm:text-8xl font-semibold text-transparent dark:from-white dark:to-slate-800/10">
 			{{ title }}
 		</NuxtLink>
 	</div>

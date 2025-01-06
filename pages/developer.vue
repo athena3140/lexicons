@@ -34,7 +34,7 @@
 			<div class="bg-gray-700 text-white rounded-md">
 				<div class="flex bg-gray-800 p-2 justify-between items-center mb-2 rounded-t">
 					<span class="text-gray-400">JS</span>
-					<button @click="copyCode" class="code bg-gray-800 text-gray-300 px-3 py-1 rounded-md">
+					<button @click="copyCode" tabindex="-1" class="code bg-gray-800 text-gray-300 px-3 py-1 rounded-md">
 						<svg
 							class="h-5 w-5 text-gray-500"
 							xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,9 @@ const copyToClipboard = (grade) => {
 };
 
 const copyCode = () => {
-	navigator.clipboard.writeText(`
+	navigator.clipboard
+		.writeText(
+			`
 // Using fetch API
 fetch('https://lexicons.vercel.app/api/_content/grade-7')
   .then(response => response.json())
@@ -105,7 +107,11 @@ async function fetchLexicon(grade) {
 }
 
 fetchLexicon(7); // Fetches lexicon for grade 7
-`);
+`
+		)
+		.then(() => {
+			$toast.success("Copied to clipboard");
+		});
 };
 const grades = [5, 6, 7, 8, 9, 10, 11, 12];
 </script>

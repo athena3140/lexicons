@@ -45,10 +45,12 @@
 		<footer class="text-gray-300 pb-5 px-3 text-xs md:w-full lg:w-9/12 mx-auto">
 			© {{ new Date().getFullYear() }} Lexicons. Your Gateway To Mastering Myanmar Lexicons.
 		</footer>
+		<Analytics />
 	</div>
 </template>
 
 <script setup>
+import { Analytics } from "@vercel/analytics/nuxt";
 import { ref } from "vue";
 
 const isOpen = ref(false);

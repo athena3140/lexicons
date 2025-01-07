@@ -64,10 +64,12 @@
 				<div>kindly <NuxtLink class="relative" to="/report">report to me!</NuxtLink></div>
 			</div>
 		</div>
+		<Analytics />
 	</main>
 </template>
 
 <script setup>
+import { Analytics } from "@vercel/analytics/nuxt";
 import { ref, onMounted, computed, provide } from "vue";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();

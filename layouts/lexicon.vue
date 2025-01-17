@@ -49,20 +49,14 @@
 		</div>
 	</nav>
 
-	<main class="flex justify-end">
+	<main class="flex relative justify-end">
 		<Sidebar :isOpen="isOpen" @update:isOpen="updateOpenStatus($event)" class="lg:w-[23%] md:w-[30%] sm:w-[50%] w-full" />
+
 		<div
-			:style="{
-				height: getHeight,
-			}"
-			@click="isOpen ? (isOpen = false) : null"
+			@click="isOpen ? toggle() : null"
 			class="transition-all scrollbar-gutter duration-300 content md:p-5 px-2 lg:w-[77%] md:w-[70%] w-full"
-			:class="{ 'sm:blur-[3px] select-none overflow-hidden h-svh': isOpen }">
+			:class="{ 'sm:blur-[3px] select-none': isOpen }">
 			<slot />
-			<div class="contact flex flex-col items-center justify-center relative font-body mt-24 mb-16 text-white">
-				<div>If you spot any data errors,</div>
-				<div>kindly <NuxtLink class="relative" to="/report">report to me!</NuxtLink></div>
-			</div>
 		</div>
 		<Analytics />
 	</main>
@@ -70,7 +64,7 @@
 
 <script setup>
 import { Analytics } from "@vercel/analytics/nuxt";
-import { ref, onMounted, computed, provide } from "vue";
+import { ref, onMounted, provide } from "vue";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const searchQuery = ref(route.query.s || "");
@@ -84,22 +78,26 @@ const isMobile = ref(false);
 
 const updateOpenStatus = (value) => {
 	isOpen.value = value;
+	document.body.style.overflow = isOpen.value ? "hidden" : "auto";
 };
 
 watch(searchQuery, (newValue) => {
 	router.replace({ query: { s: newValue } });
 });
 provide("searchQuery", searchQuery);
-const toggle = () => (isOpen.value = !isOpen.value);
+const toggle = () => {
+	isOpen.value = !isOpen.value;
+	const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+	document.body.style.overflow = isOpen.value ? "hidden" : "auto";
+	document.body.style.paddingRight = isOpen.value ? `${scrollbarWidth}px` : "0";
+};
 const resize = () => {
 	mainPadding.value = document.querySelector("aside").offsetWidth;
 	height.value = window.innerHeight - document.querySelector("nav").offsetHeight;
 	window.innerWidth > 768 ? (isOpen.value = false) : null;
 	document.documentElement.style.setProperty("--scroll-padding", `${document.getElementById("nav").offsetHeight + 15}px`);
 };
-const getHeight = computed(() => {
-	return isOpen.value ? `${height.value}px` : null;
-});
 
 onMounted(() => {
 	resize();
@@ -140,36 +138,7 @@ input[type="search"]::-webkit-search-cancel-button {
 	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
 	cursor: pointer;
 }
-
-.contact a:after {
-	content: "";
-	width: 100%;
-	height: 50%;
-	position: absolute;
-	bottom: -45%;
-	right: 0;
-	z-index: 1;
-	background-repeat: no-repeat;
-	background-image: url("../assets/images/underline.svg");
-}
-
-.contact {
-	animation: move linear forwards;
-	animation-timeline: view();
-	animation-range-start: cover;
-	animation-range-end: 125px;
-	transform: translateY(1rem) scale(0.5);
-	opacity: 0;
-}
-
 main {
 	scroll-padding: 100px;
-}
-
-@keyframes move {
-	100% {
-		transform: translateY(0) scale(1);
-		opacity: 1;
-	}
 }
 </style>

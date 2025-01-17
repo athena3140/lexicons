@@ -33,7 +33,7 @@
 		<div class="relative lg:w-3/4 w-full mx-auto">
 			<div class="bg-gray-700 text-white rounded-md">
 				<div class="flex bg-gray-800 p-2 justify-between items-center mb-2 rounded-t">
-					<span class="text-gray-400">JS</span>
+					<span class="text-gray-400 ps-3">JS</span>
 					<button @click="copyCode" tabindex="-1" class="code bg-gray-800 text-gray-300 px-3 py-1 rounded-md">
 						<svg
 							class="h-5 w-5 text-gray-500"
@@ -81,8 +81,9 @@
 const { $toast } = useNuxtApp();
 
 const copyToClipboard = (grade) => {
-	navigator.clipboard.writeText(`https://lexicons.vercel.app/api/_content/grade-${grade}`);
-	$toast.success("Copied to clipboard");
+	navigator.clipboard.writeText(`https://lexicons.vercel.app/api/_content/grade-${grade}`).then(() => {
+		$toast.success("Copied to clipboard");
+	});
 };
 
 const copyCode = () => {

@@ -4,9 +4,9 @@
 		:class="{
 			'translate-x-0': isOpen,
 			'min-h-svh ': !loaded,
-			bordered: loaded && 'isBorder' in sidebar,
+			bordered: loaded && sidebar.isBorder,
 		}"
-		class="px-3 pb-4 overflow-y-auto sidebar fixed md:translate-x-0 -translate-x-full left-0 z-40 transition duration-300 bg-[#121c24d5] backdrop-blur-lg">
+		class="px-3 pb-4 overflow-y-auto sidebar fixed md:translate-x-0 -translate-x-full left-0 z-30 transition duration-300 bg-[#121c24d5] backdrop-blur-lg">
 		<div class="pt-10">
 			<!-- Skeleton -->
 			<div v-for="i in 2" v-if="!loaded" class="mb-10 flex items-end flex-col">
@@ -19,10 +19,10 @@
 					<p class="sideTitle" v-if="data.sectionTitle">{{ data.sectionTitle }}</p>
 
 					<div class="sideItem" v-for="(titles, index) in data.titles" :key="index">
-						<NuxtLink @click="goToSection" :to="getToHerf(data, index)">
+						<a @click.prevent="goToSection" :href="getToHerf(data, index)">
 							<div class="number">{{ convertDigits(index + 1) }}။</div>
 							{{ titles }}
-						</NuxtLink>
+						</a>
 					</div>
 				</div>
 			</template>
@@ -57,9 +57,15 @@ const changeSidebarHeight = () => {
 };
 
 const goToSection = (event) => {
-	if (!props.isOpen) return;
-	emit("update:isOpen", false);
-	event.preventDefault();
+	if (props.isOpen) emit("update:isOpen", false);
+
+	setTimeout(() => {
+		const href = event.target.getAttribute("href");
+		document.getElementById(href.slice(1)).scrollIntoView({
+			behavior: "smooth",
+		});
+		window.history.pushState(null, "", href);
+	}, 10);
 };
 
 const convertDigits = (num) => num.toString().replace(/[0-9]/g, (d) => "၀၁၂၃၄၅၆၇၈၉"[d]);
@@ -78,7 +84,6 @@ ol {
 
 li::marker {
 	color: rgb(107 114 128);
-	/* font-size: 12px; */
 }
 .bordered {
 	@apply border-0 md:border-r-2 border-gray-500;

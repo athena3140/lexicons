@@ -1,10 +1,10 @@
 <template>
 	<div class="lg:pt-24 md:pt-24 sm:pt-20 pt-16" :id="getId(section, index)" v-show="shown">
 		<div class="card">
-			<NuxtLink :to="getHash(section, index)" class="card__title">
+			<a @click.prevent="goToSection" :href="getHash(section, index)" class="card__title">
 				{{ title }}
 				<span>#</span>
-			</NuxtLink>
+			</a>
 			<table class="border-separate border-spacing-y-2 w-full">
 				<tbody>
 					<tr
@@ -36,7 +36,6 @@ const props = defineProps({
 });
 
 const shown = ref(false);
-const emit = defineEmits(["update:found-count"]);
 
 const showItem = (item) => {
 	const show = props.searchQuery ? item.toLowerCase().includes(props.searchQuery.toLowerCase()) : true;
@@ -46,6 +45,14 @@ const showItem = (item) => {
 		shown.value = props.data.some((item) => item.toLowerCase().includes(props.searchQuery.toLowerCase()));
 	}
 	return show;
+};
+
+const goToSection = (event) => {
+	const href = event.target.getAttribute("href");
+	document.getElementById(href.slice(1)).scrollIntoView({
+		behavior: "smooth",
+	});
+	window.history.pushState(null, "", href);
 };
 
 const getId = (section, index) => `${section ? `${section}-${index + 1}` : `${index + 1}`}`;

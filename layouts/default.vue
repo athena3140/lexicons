@@ -20,16 +20,16 @@
 					<ul
 						class="font-medium gap-2 flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-gray-800 md:bg-gray-900 border-gray-700">
 						<li>
-							<NuxtLink @click="isOpen = false" to="/">Home</NuxtLink>
+							<NuxtLink @click="toggle()" to="/">Home</NuxtLink>
 						</li>
 						<li>
-							<NuxtLink @click="isOpen = false" to="/changelog">Changelog</NuxtLink>
+							<NuxtLink @click="toggle()" to="/changelog">Changelog</NuxtLink>
 						</li>
 						<li>
-							<NuxtLink @click="isOpen = false" to="/report">Report</NuxtLink>
+							<NuxtLink @click="toggle()" to="/report">Report</NuxtLink>
 						</li>
 						<li>
-							<NuxtLink @click="isOpen = false" to="/developer">Developer</NuxtLink>
+							<NuxtLink @click="toggle()" to="/developer">Developer</NuxtLink>
 						</li>
 					</ul>
 				</div>
@@ -37,7 +37,7 @@
 			</nav>
 		</header>
 		<main
-			@click="isOpen ? (isOpen = false) : null"
+			@click="isOpen ? toggle() : null"
 			class="p-4 transition-all duration-300 mb-40"
 			:class="{ 'blur-[2px] select-none overflow-hidden': isOpen }">
 			<slot />
@@ -54,7 +54,13 @@ import { Analytics } from "@vercel/analytics/nuxt";
 import { ref } from "vue";
 
 const isOpen = ref(false);
-const toggle = () => (isOpen.value = !isOpen.value);
+const toggle = () => {
+	isOpen.value = !isOpen.value;
+	const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+	document.body.style.overflow = isOpen.value ? "hidden" : "auto";
+	document.body.style.paddingRight = isOpen.value ? `${scrollbarWidth}px` : "0";
+};
 const logoUrl = ref("");
 
 onMounted(() => {

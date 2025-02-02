@@ -5,7 +5,8 @@
 		<logo class="md:w-40 sm:w-36 w-32" />
 		<div class="flex items-center justify-end gap-2">
 			<div
-				class="rounded relative flex items-center sm:px-2 sm:py-2 px-2 py-1 md:w-72 sm:w-full w-[70%] bg-[#ffffff] text-gray-600">
+				:class="{ active: isFocus || searchQuery }"
+				class="rounded relative flex items-center searchBar sm:px-2 sm:py-2 px-2 py-1 transition-all bg-[#ffffff] text-gray-600">
 				<label for="search">
 					<svg
 						width="16"
@@ -23,6 +24,8 @@
 				<input
 					autocomplete="off"
 					v-model="searchQuery"
+					@focus="isFocus = true"
+					@blur="isFocus = false"
 					id="search"
 					type="search"
 					placeholder="Search"
@@ -54,7 +57,7 @@
 
 		<div
 			@click="isOpen ? toggle() : null"
-			class="transition-all scrollbar-gutter duration-300 content md:p-5 px-2 lg:w-[77%] md:w-[70%] w-full"
+			class="transition-all scrollbar-gutter duration-300 md:p-5 px-2 lg:w-[77%] md:w-[70%] w-full"
 			:class="{ 'sm:blur-[3px] select-none': isOpen }">
 			<slot />
 		</div>
@@ -75,6 +78,7 @@ const mainPadding = ref(0);
 const height = ref(0);
 const foundCount = useState("foundCount");
 const isMobile = ref(false);
+const isFocus = ref(false);
 
 const updateOpenStatus = (value) => {
 	isOpen.value = value;
@@ -140,5 +144,25 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 main {
 	scroll-padding: 100px;
+}
+
+.searchBar.active {
+	@apply lg:w-80 md:w-72 sm:w-80 w-[70%];
+}
+
+.searchBar {
+	@apply lg:w-72 md:w-72 sm:w-60 w-[70%];
+}
+
+@media screen and (min-width: 450px) and (max-width: 620px) {
+	.searchBar.active {
+		width: 15rem;
+	}
+}
+
+@media screen and (min-width: 620px) and (max-width: 640px) {
+	.searchBar.active {
+		width: 20rem;
+	}
 }
 </style>

@@ -9,8 +9,13 @@ body {
 	background-position: 1px 5px;
 	background-color: #121c24;
 	scroll-behavior: smooth;
-	scroll-padding: var(--scroll-padding);
 	scrollbar-gutter: stable;
+}
+
+html {
+	scroll-padding: var(--scroll-padding);
+	scroll-margin: var(--scroll-padding);
+	scroll-margin-top: var(--scroll-padding);
 }
 
 ::-webkit-scrollbar {
@@ -53,7 +58,11 @@ aside::-webkit-scrollbar-thumb {
 	}
 
 	.card {
-		@apply border text-white border-gray-600 rounded p-5 pb-7 font-sagar tracking-wide font-thin lg:w-[75%] sm:w-[90%] mx-auto relative;
+		@apply text-white mt-14 font-sagar tracking-wide font-thin lg:w-[75%] sm:w-[90%] mx-auto relative;
+
+		.innerCard {
+			@apply border border-gray-600 rounded p-5 pb-7;
+		}
 	}
 
 	.search-active {

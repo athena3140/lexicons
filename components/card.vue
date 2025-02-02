@@ -1,10 +1,10 @@
 <template>
-	<div class="lg:pt-24 md:pt-24 sm:pt-20 pt-16" :id="getId(section, index)" v-show="shown">
-		<div class="card">
-			<a @click.prevent="goToSection" :href="getHash(section, index)" class="card__title">
+	<div class="card" :id="getId(section, index)" v-show="shown">
+		<div class="innerCard">
+			<NuxtLink @click.prevent="goToSection" :href="getHash(section, index)" class="card__title">
 				{{ title }}
 				<span>#</span>
-			</a>
+			</NuxtLink>
 			<table class="border-separate border-spacing-y-2 w-full">
 				<tbody>
 					<tr

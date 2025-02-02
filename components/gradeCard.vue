@@ -18,10 +18,10 @@
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
 	title: { type: String },
-	icon: { type: Number },
+	icon: { type: [String, Number] },
 	chapterRange: { type: String },
 });
 </script>
@@ -49,7 +49,7 @@ const props = defineProps({
 	--card-hover-border-color: rgba(255, 255, 255, 0);
 	--card-hover-icon-color: #34d399;
 	--card-hover-icon-background-color: rgba(52, 211, 153, 0.1);
-	--card-hover-icon-border-color: rgba(52, 211, 153, 0.2);
+	--card-hover-icon-border-color: #34d39933;
 	--blur-opacity: 0.01;
 }
 
@@ -60,7 +60,7 @@ const props = defineProps({
 	border: 2px solid var(--card-border-color);
 	cursor: pointer;
 	position: relative;
-	@apply p-5 pb-7;
+	@apply p-5;
 }
 .gradeCard::before {
 	content: "";
@@ -310,46 +310,70 @@ const props = defineProps({
 	right: 22.5%;
 }
 
-.gradeCard:hover .icon::after {
+.gradeCard:hover .icon::after,
+.gradeCard.active .icon::after {
 	background-color: var(--card-hover-icon-background-color);
 	border-color: var(--card-hover-icon-border-color);
 }
-.gradeCard:hover .icon {
+
+.gradeCard:hover .icon,
+.gradeCard.active .icon {
 	color: var(--card-hover-icon-color);
 }
-.gradeCard:hover .shine {
+
+.gradeCard:hover .shine,
+.gradeCard.active .shine {
 	opacity: 1;
 	transition-duration: 0.5s;
 	transition-delay: 0s;
 }
-.gradeCard:hover .background .tiles {
+
+.gradeCard:hover .background .tiles,
+.gradeCard.active .background .tiles {
 	opacity: 1;
 	transition-delay: 0.25s;
 }
-.gradeCard:hover .background .tiles .tile {
+
+.gradeCard:hover .background .tiles .tile,
+.gradeCard.active .background .tiles .tile {
 	-webkit-animation-name: tile;
 	animation-name: tile;
 }
-.gradeCard:hover .background .line {
+
+.gradeCard:hover .background .line,
+.gradeCard.active .background .line {
 	opacity: 1;
 	transition-duration: 0.15s;
 }
-.gradeCard:hover .background .line:before {
+
+.gradeCard:hover .background .line:before,
+.gradeCard.active .background .line:before {
 	transform: scaleX(1);
 }
-.gradeCard:hover .background .line:after {
+
+.gradeCard:hover .background .line:after,
+.gradeCard.active .background .line:after {
 	transform: scaleY(1);
 }
+
 .gradeCard:hover .background .line.line-1:before,
-.gradeCard:hover .background .line.line-1:after {
+.gradeCard.active .background .line.line-1:before,
+.gradeCard:hover .background .line.line-1:after,
+.gradeCard.active .background .line.line-1:after {
 	transition-delay: 0s;
 }
+
 .gradeCard:hover .background .line.line-2:before,
-.gradeCard:hover .background .line.line-2:after {
+.gradeCard.active .background .line.line-2:before,
+.gradeCard:hover .background .line.line-2:after,
+.gradeCard.active .background .line.line-2:after {
 	transition-delay: 0.15s;
 }
+
 .gradeCard:hover .background .line.line-3:before,
-.gradeCard:hover .background .line.line-3:after {
+.gradeCard.active .background .line.line-3:before,
+.gradeCard:hover .background .line.line-3:after,
+.gradeCard.active .background .line.line-3:after {
 	transition-delay: 0.3s;
 }
 </style>

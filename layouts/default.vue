@@ -35,16 +35,18 @@
 				</div>
 				<hamburger @click="toggle" :isOpen="isOpen" class="md:hidden cursor-pointer" />
 			</nav>
+			<div class="backdrop" @click="isOpen ? toggle() : null" :class="{ active: isOpen }"></div>
 		</header>
-		<main
-			@click="isOpen ? toggle() : null"
-			class="p-4 transition-all duration-300 mb-40"
-			:class="{ 'blur-[2px] select-none overflow-hidden': isOpen }">
+
+		<main class="p-4 transition-all duration-300 mb-40">
 			<slot />
 		</main>
-		<footer class="text-gray-300 pb-5 px-3 text-xs md:w-full lg:w-9/12 mx-auto">
-			© {{ new Date().getFullYear() }} Lexicons. Your Gateway To Mastering Myanmar Lexicons.
+
+		<footer class="text-gray-300 pb-5 px-3 text-xs md:w-full lg:w-9/12 mx-auto flex justify-between">
+			<span>© {{ new Date().getFullYear() }} Lexicons. Your Gateway To Mastering Myanmar Lexicons.</span>
+			<NuxtLink to="https://github.com/athena3140/lexicons">Github</NuxtLink>
 		</footer>
+
 		<Analytics />
 	</div>
 </template>
@@ -115,6 +117,14 @@ onMounted(() => {
 }
 
 .menu ul li a.router-link-active {
-	@apply hover:bg-blue-700 text-white bg-blue-700;
+	@apply hover:bg-primary-700 text-white bg-primary-700;
+}
+
+.backdrop {
+	@apply absolute  top-0 right-1/2 translate-x-1/2 z-[-1]  backdrop-blur-sm;
+
+	&.active {
+		@apply w-full h-screen;
+	}
 }
 </style>

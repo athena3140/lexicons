@@ -1,10 +1,12 @@
 <template>
-	<div :class="isGradeHighSchool ? 'mt-20 pb-5' : ''">
+	<div :class="{ 'mt-20 pb-5': isLoading }">
 		<NotFound v-if="combinedData.length > 0 && totalFoundCount == 0 && searchQuery" />
 		<titleSkeleton v-if="isLoading && isGradeHighSchool" />
 		<CardSkeleton v-if="isLoading" />
+
 		<template v-else>
 			<exportFlashCard :grade="grade" />
+			<downloadPdfCard :grade="grade" v-if="!searchQuery" />
 
 			<template v-if="isGradeHighSchool">
 				<template v-for="(section, sectionIndex) in Object.values(data)" :key="sectionIndex">
@@ -44,7 +46,12 @@
 import { ref, inject } from "vue";
 const route = useRoute();
 const grade = route.params.grade;
-const isGradeHighSchool = grade >= 10;
+let isGradeHighSchool = grade >= 10;
+let isNUGCourse = false;
+if (grade == "12-nug") {
+	isGradeHighSchool = true;
+	isNUGCourse = true;
+}
 
 const isLoading = ref(true); // set isLoading
 const { data: contentData } = await useAsyncData(`grade-${grade}`, () => queryContent(`/grade-${grade}`).findOne()).finally(
@@ -117,7 +124,7 @@ const updateFoundCount = () => {
 };
 
 const logoData = useState("logoData");
-logoData.value = ref({ text: `G-${grade}`, url: `/grade-${grade}` });
+logoData.value = ref({ text: `G-${isNUGCourse ? "12 NUG" : grade}`, url: `/grade-${grade}` });
 
 const Sidebar = useState("sidebar");
 Sidebar.value = sideBar;
@@ -163,11 +170,11 @@ definePageMeta({
 	layout: "lexicon",
 });
 useHead({
-	title: `G-${grade} | Lexicons`,
+	title: `G-${isNUGCourse ? "12 NUG" : grade} | Lexicons`,
 });
 </script>
 
-<style scoped>
+<style>
 .exportCard {
 	button {
 		@apply rounded-md focus:outline-none text-sm font-medium h-10 px-4 py-2 bg-gray-800 hover:bg-gray-700 hover:border-gray-600 transition border-gray-700 border text-white;
@@ -189,9 +196,8 @@ useHead({
 .contact {
 	animation: move linear forwards;
 	animation-timeline: view();
-	animation-range-start: cover;
-	animation-range-end: 125px;
-	transform: translateY(1rem) scale(0.5);
+	animation-range: -100px 30px;
+	transform: translateY(1rem) scale(0.9);
 	opacity: 0;
 }
 

@@ -1,5 +1,5 @@
 <template>
-	<div class="lg:w-[75%] mx-auto lg:ps-0 md:ps-5 sm:ps-7 ps-6">
+	<div class="lg:w-[75%] mx-auto lg:ps-0 md:ps-5 sm:ps-7 ps-6 cardTitle">
 		<div class="font-walone text-white text-3xl w-fit title relative">
 			{{ title }}
 		</div>

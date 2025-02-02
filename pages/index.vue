@@ -31,7 +31,7 @@
 			</div>
 			<div class="grades w-full text-gray-300 mt-20">
 				<h2 class="font-header text-xl mb-3">Grades</h2>
-				<div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 md:gap-x-10 gap-x-5 gap-y-10">
+				<div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 md:gap-x-10 gap-x-5 gap-y-10">
 					<template v-for="(card, i) in cards" :key="i">
 						<NuxtLink :to="card.url">
 							<GradeCard
@@ -89,7 +89,7 @@ const cards = ref([
 		icon: 10,
 		title: "Grade - 10",
 		url: "/grade-10",
-		chapterRange: "စကားပြေရွေးချယ်ချက် နှင့် ကဗျာရွေးချယ်ချက်",
+		chapterRange: "စကားပြေ နှင့် ကဗျာရွေးချယ်ချက်",
 	},
 	{
 		icon: 11,
@@ -102,6 +102,12 @@ const cards = ref([
 		title: "Grade - 12",
 		url: "/grade-12",
 		chapterRange: "စကားပြေ၊ ကဗျာ နှင့် ပြဇာတ်ရွေးချယ်ချက်",
+	},
+	{
+		icon: "NUG",
+		title: "Grade - 12 NUG",
+		url: "/grade-12-nug",
+		chapterRange: "အပြောသင်ခန်းစာ၊ စကားပြေ၊ ကဗျာ နှင့် ပြဇာတ်ရွေးချယ်ချက်",
 	},
 ]);
 </script>

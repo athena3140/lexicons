@@ -26,7 +26,7 @@ const props = defineProps({
 });
 </script>
 
-<style>
+<!-- <style>
 :root {
 	--background-color: #121c24;
 	--text-color: #a1a1aa;
@@ -376,4 +376,4 @@ const props = defineProps({
 .gradeCard.active .background .line.line-3:after {
 	transition-delay: 0.3s;
 }
-</style>
+ </style> -->

@@ -78,14 +78,32 @@ onMounted(() => {
 </script>
 
 <style scoped>
-ol {
-	list-style-type: myanmar;
-}
-
-li::marker {
-	color: rgb(107 114 128);
-}
 .bordered {
 	@apply border-0 md:border-r-2 border-gray-500;
+}
+
+@keyframes animate-in-and-out {
+	entry 0% {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+	entry 100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	exit 0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	exit 100% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+}
+
+.sideItem {
+	animation: linear animate-in-and-out;
+	animation-timeline: view();
 }
 </style>

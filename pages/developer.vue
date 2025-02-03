@@ -7,6 +7,8 @@
 				class: 'my-toast',
 				descriptionClass: 'my-toast-description',
 			}" />
+		<Heading :path="'/report'" :title="'Developer'" class="!mt-20" />
+
 		<h1 class="font-header text-3xl text-white mb-5 mt-16 mx-auto lg:w-3/4 w-full">Available Endpoints</h1>
 		<div class="relative overflow-x-scroll rounded">
 			<table class="lg:w-3/4 w-full mx-auto text-sm text-left text-gray-400">

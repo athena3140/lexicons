@@ -1,19 +1,42 @@
 <template>
 	<Nextlayout>
 		<div class="md:w-full lg:w-9/12 mx-auto">
-			<div class="hero font-body w-full mt-10 relative px-5 lg:py-32 md:py-32 sm:py-32 py-20 rounded-xl">
-				<div class="text-balance flex flex-col justify-center md:gap-20 gap-10 h-full w-full">
+			<div class="hero font-body w-full mt-10 relative px-5 lg:h-[28rem] md:h-[28rem] sm:h-[23rem] h-[16rem] rounded-xl">
+				<div class="text-balance flex flex-col pt-10 lg:pt-20 md:pt-20 sm:pt-16">
 					<div>
+						<div class="mx-auto max-w-4xl text-center">
+							<div
+								class="inline-flex items-center rounded-full border border-cyan-200/20 backdrop-blur-[2px] bg-cyan-500/10 px-3 py-1 mb-2 sm:text-xs text-[10px] text-cyan-300">
+								<span class="mr-2">✨</span> Explore Myanmar Lexicons for Grades 5-12
+							</div>
+						</div>
 						<h1
-							class="lg:text-4xl md:text-3xl sm:text-3xl max-[640px]:text-2xl max-[481px]:text-base max-[481px]:text-wrap font-header text-white text-center">
-							Learn Myanmar Lexicons for Grades 5-12
+							class="lg:text-5xl md:text-5xl sm:text-4xl text-2xl font-semibold bg-gradient-to-r from-white to-cyan-200 bg-clip-text font-geist text-transparent text-center">
+							Your Gateway To Mastering Myanmar Lexicons
 						</h1>
 						<p
 							class="md:text-base md:mt-3 sm:text-base text-xs mt-1 max-[640px]:text-base max-[481px]:text-xs text-gray-100 text-center">
 							Comprehensive lexicon resources for all grades.
 						</p>
+						<div
+							class="flex justify-center lg:gap-20 lg:mt-20 md:gap-20 md:mt-20 sm:mt-14 sm:gap-20 mt-8 sm:text-base text-xs gap-10">
+							<div class="text-center text-gray-100">
+								<p class="font-semibold mb-1">5-12</p>
+								<p class="text-gray-300">Grade</p>
+							</div>
+							<div class="text-center text-gray-100">
+								<!-- 1946 -->
+								<p class="font-semibold mb-1">1900+</p>
+								<p class="text-gray-300">Words</p>
+							</div>
+							<div class="text-center text-gray-100">
+								<p class="font-semibold mb-1">PDF</p>
+								<p class="text-gray-300">Download</p>
+							</div>
+						</div>
 					</div>
-					<div class="mx-auto relative w-fit">
+					<div></div>
+					<!-- <div class="mx-auto relative w-fit">
 						<input
 							type="text"
 							class="sm:px-4 sm:py-2 px-3 py-2 sm:text-base text-sm bg-white md:w-80 sm:w-72 rounded focus:border-none focus:outline-none placeholder:text-gray-400"
@@ -22,7 +45,7 @@
 							class="bg-primary-700 font-sm font-thin sm:text-base text-xs tracking-wide text-white sm:px-2 sm:py-1 py-1 px-2 sm:rounded-md rounded-[4px] absolute top-1/2 right-1 -translate-y-1/2">
 							Search
 						</button>
-					</div>
+					</div> -->
 				</div>
 				<div class="scroll right-1/2 translate-x-1/2 absolute -bottom-16">
 					<div></div>
@@ -114,9 +137,31 @@ const cards = ref([
 
 <style>
 .hero {
-	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/assets/images/hero.png);
-	background-size: cover;
-	background-repeat: no-repeat;
+	div:first-child {
+		position: relative;
+		z-index: 2;
+	}
+
+	&:after,
+	&:before {
+		@apply rounded-xl;
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/assets/images/hero.png);
+		background-size: cover;
+		background-repeat: no-repeat;
+		backdrop-filter: blur(1.5px);
+	}
+
+	&:before {
+		z-index: 0;
+		background: linear-gradient(to bottom, #ffffff00, #0000007a 125%);
+	}
 }
 
 .scroll div {

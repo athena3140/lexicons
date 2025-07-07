@@ -124,7 +124,7 @@ const updateFoundCount = () => {
 };
 
 const logoData = useState("logoData");
-logoData.value = ref({ text: `G-${isNUGCourse ? "12 NUG" : grade}`, url: `/grade-${grade}` });
+logoData.value = ref({ text: `G-${isNUGCourse ? "12 NUG" : grade}` });
 
 const Sidebar = useState("sidebar");
 Sidebar.value = sideBar;

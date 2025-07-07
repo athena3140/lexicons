@@ -2,7 +2,7 @@
 	<div>
 		<div v-if="!loaded" class="skeleton lg:h-11 md:h-10 sm:h-9 h-9 w-30"></div>
 		<div v-else>
-			<NuxtLink :to="logoData.url">
+			<NuxtLink to="/">
 				<img :src="logoUrl" />
 			</NuxtLink>
 		</div>

@@ -46,7 +46,7 @@ const data = [
 	},
 	{
 		q: "Is there a Q&A section?",
-		a: "Yep, this is it. Simple and straight to the point.",
+		a: "Yep, this is it.",
 	},
 	{
 		q: "Does this app have API endpoints?",

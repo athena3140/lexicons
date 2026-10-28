@@ -17,6 +17,7 @@ export default defineNuxtConfig({
 													{ hid: "og:image", property: "og:image", content: "https://lexicons.vercel.app/ogimage.png" },
 													{ hid: "og:url", property: "og:url", content: "https://lexicons.vercel.app/" },
 													{ hid: "og:type", property: "og:type", content: "website" },
+													{ name: "google-site-verification",content: "W4s7B7fm4Ei17hzWhPghWR5AEdGbNqP-UKisG27t4mA" },
 									],
 									title: "Lexicons",
 					},
